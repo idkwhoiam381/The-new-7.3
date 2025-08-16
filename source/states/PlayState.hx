@@ -861,7 +861,7 @@ class PlayState extends MusicBeatState
 		}
 
 		var video:VideoHandler = new VideoHandler();
-			#if (hxCodec >= "3.0.0")
+			#if (hxvlc >= "3.0.0")
 			// Recent versions
 			video.play(filepath);
 			video.onEndReached.add(function()
