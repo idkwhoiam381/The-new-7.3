@@ -855,6 +855,7 @@ class PlayState extends MusicBeatState
 		}
 
 			var video = new FlxVideo();
+
 			video.play(filepath);
 			video.onEndReached.add(function()
 			{
@@ -870,7 +871,6 @@ class PlayState extends MusicBeatState
 				startAndEnd();
 				return;
 			}
-			#end
 		#else
 		FlxG.log.warn('Platform not supported!');
 		startAndEnd();
