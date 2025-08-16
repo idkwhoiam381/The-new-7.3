@@ -59,6 +59,11 @@
       "version": "1.4.0"
     },
     {
+      "name": "hxvlc",
+      "type": "haxelib",
+      "version": "1.2.0"
+    },
+    {
       "name": "hxdiscord_rpc",
       "type": "haxelib",
       "version": null
