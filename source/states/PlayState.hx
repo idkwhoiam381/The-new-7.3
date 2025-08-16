@@ -1,5 +1,6 @@
 package states;
 
+import hxvlc.flixel.FlxVideo;
 import backend.Highscore;
 import backend.StageData;
 import backend.WeekData;
@@ -35,13 +36,6 @@ import substates.GameOverSubstate;
 #if !flash
 import flixel.addons.display.FlxRuntimeShader;
 import openfl.filters.ShaderFilter;
-#end
-
-#if VIDEOS_ALLOWED
-#if (hxCodec >= "3.0.0") import hxcodec.flixel.FlxVideo as VideoHandler;
-#elseif (hxCodec >= "2.6.1") import hxcodec.VideoHandler as VideoHandler;
-#elseif (hxCodec == "2.6.0") import VideoHandler;
-#else import vlc.MP4Handler as VideoHandler; #end
 #end
 
 import objects.Note.EventNote;
@@ -860,9 +854,7 @@ class PlayState extends MusicBeatState
 			return;
 		}
 
-		var video:VideoHandler = new VideoHandler();
-			#if (hxCodec >= "3.0.0")
-			// Recent versions
+			var video = new FlxVideo();
 			video.play(filepath);
 			video.onEndReached.add(function()
 			{
