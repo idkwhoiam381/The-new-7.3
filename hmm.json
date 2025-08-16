@@ -45,6 +45,13 @@
       "dir": null,
       "ref": "main",
       "url": "https://github.com/AliAlafandy/SScript"
+      },
+      {
+      "name": "hxCodec",
+      "type": "git",
+      "dir": null,
+      "ref": "main",
+      "url": "https://github.com/AliAlafandy/hxCodec"
     },
     {
       "name": "tjson",
