@@ -855,7 +855,6 @@ class PlayState extends MusicBeatState
 		}
 
 			var video = new FlxVideo();
-
 			video.play(filepath);
 			video.onEndReached.add(function()
 			{
