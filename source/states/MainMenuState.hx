@@ -11,28 +11,29 @@ class MainMenuState extends MusicBeatState
 {
 	public static var psychEngineVersion:String = '0.7.3'; // This is also used for Discord RPC
 	public static var curSelected:Int = 0;
+	public static var firstStart:Bool = true;
 
 	var menuItems:FlxTypedGroup<FlxSprite>;
 
 	var optionShit:Array<String> = [
-		'story_mode',
-		'freeplay',
+		'story_mode', // 0
+		'freeplay', // 1
 		
 		#if MODS_ALLOWED
-		'mods',
+		'mods', // 2
 		#end
 		
-		#if ACHIEVEMENTS_ALLOWED
-		'awards',
-		#end
+		//#if ACHIEVEMENTS_ALLOWED
+		//'awards', 
+		//#end
 		
-		'credits',
+		//'credits', 
 		
-		#if !switch
-		'donate',
-		#end
+		//#if !switch
+		//'donate', 
+		//#end
 		
-		'options'
+		'options' // 3
 	];
 
 	var magenta:FlxSprite;
@@ -95,8 +96,47 @@ class MainMenuState extends MusicBeatState
 				scr = 0;
 			menuItem.scrollFactor.set(0, scr);
 			menuItem.updateHitbox();
-			menuItem.screenCenter(X);
+			//menuItem.screenCenter(X);
+
+
+			switch (i) 
+			{
+				case 0:
+					menuItem.y = 34.95;
+					menuItem.x = 299.4;
+
+				case 1:
+					menuItem.y = 193.75;
+					menuItem.x = 569.8;
+
+				case 2;
+					menuItem.y = 393;
+					menuItem.x = 716.5;
+
+				case 3;
+					menuItem.x = 712.9;
+					menuItem.y = 594.75;
+
+			}
+
+			
+
+			if(FlxG.save.data.antialiasing)
+                {
+                    menuItem.antialiasing = true;
+                }
+            if (firstStart)
+                FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
+                    { 
+
+                         changeItem();
+                     }});
+            else
+                menuItem.y = 60 + (i * 160);
+
 		}
+
+		firstStart = false;
 
 		var psychVer:FlxText = new FlxText(12, FlxG.height - 44, 0, "Psych Engine v" + psychEngineVersion, 12);
 		psychVer.scrollFactor.set();
@@ -125,7 +165,7 @@ class MainMenuState extends MusicBeatState
 
 		super.create();
 
-		FlxG.camera.follow(camFollow, null, 9);
+		//FlxG.camera.follow(camFollow, null, 9);
 	}
 
 	var selectedSomethin:Bool = false;
@@ -225,6 +265,15 @@ class MainMenuState extends MusicBeatState
 		super.update(elapsed);
 	}
 
+	override function beatHit() {
+		super.beatHit();
+
+		if (curBeat % 4 == 2)
+		{
+			FlxG.camera.zoom = 1.02;
+		}
+
+	}
 	function changeItem(huh:Int = 0)
 	{
 		FlxG.sound.play(Paths.sound('scrollMenu'));
