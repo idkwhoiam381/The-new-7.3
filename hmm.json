@@ -40,13 +40,6 @@
       "url": "https://github.com/AliAlafandy/hxcpp"
     },
     {
-      "name": "hxCodec",
-      "type": "git",
-      "dir": null,
-      "ref": "main",
-      "url": "https://github.com/AliAlafandy/hxCodec"
-    },
-    {
       "name": "SScript",
       "type": "git",
       "dir": null,
